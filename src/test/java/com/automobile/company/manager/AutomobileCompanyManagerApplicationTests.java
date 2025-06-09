@@ -1,4 +1,4 @@
-package com.automobile.company.manager.automobilecompanymanager;
+package com.automobile.company.manager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
