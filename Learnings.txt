@@ -1,0 +1,9 @@
+10/06/2025
+First create new project give the name AutomobileCompany, select java as language & type-gradle,
+java-17 & packaging-JAR, click next and save.
+1.In resources package->open application.properties->give spring.database.url=jdbc:mysql//
+database.driver-class-name=com.mysql.jdbc.Driver, spring.jpa.hibernate.ddl-auto=update,
+spring.datasource.username=root, spring.datasource.password=password
+
+2.Next in build.gradle add dependecies
+----------------------------------------------------------------------------------
