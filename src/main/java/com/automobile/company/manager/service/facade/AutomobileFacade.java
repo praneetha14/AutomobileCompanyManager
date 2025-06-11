@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
-
 public class AutomobileFacade {
 
     private final AutomobileService automobileService;
