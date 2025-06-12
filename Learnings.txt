@@ -1,9 +1,32 @@
 10/06/2025
 First create new project give the name AutomobileCompany, select java as language & type-gradle,
 java-17 & packaging-JAR, click next and save.
-1.In resources package->open application.properties->give spring.database.url=jdbc:mysql//
+1.In resources package->open application.properties->give spring.database.url=jdbc:mysql//(3306-port for
+database, to search where mysql is located), 8080-port for springboot application.
 database.driver-class-name=com.mysql.jdbc.Driver, spring.jpa.hibernate.ddl-auto=update,
-spring.datasource.username=root, spring.datasource.password=password
+spring.datasource.username=root, spring.datasource.password=password(for connecting database from local server
+to springboot application)
 
-2.Next in build.gradle add dependecies
+2.Next in build.gradle add dependecies, spring-boot-starter for starting the spring application
+to let to know that it is spring application, spring-boot-starter-web->It is for web layer, adding essential dependencies
+that provides the functionalities for creating REST api's. It is for tomcat server.
+spring-boot-data-starter-jpa -> for datalayer-> for database which performs tasks like sending & modifying data
+& for entity annotations & repository. my-sql-connector-j -> for connecting to mysqlserver.
+
+3.In src->main->java->com.automobile.company.manager package-> create new packages rest.v1(for controller in which facade method
+will be called. in controller we define api endpoints. In controller we autowire facade layer),
+model(for receiving input as we receive input as json object then we convert into required output
+like DTO or VO. In model we create dto,enums,vo packages for fields), entity(for database
+creation), service(inside this there are facade & service packages in which business logic is defined
+in facade layer & service package for communicating with repository), repository(to perform all dml(data manipulation language
+operations).
+In controller we autowire facade class, in facade layer we autowire serviceimpl class, in serviceimpl
+class we implements service interface. In controller we give json as input & returns json & its corresponding
+http code for its api method. And for constructor based injection we define another class on com.automobile....
+package for defining beans for facade class & service class. For autowiring we add @RequiredArgsConstructor
+annotation for automatically generating constructor that includes parameters for all final fields. It is also used
+for reducing boiler plate code. Facade layer calls the service layer, it takes model as input & it sends to
+service layer & facade layer returns entity which it gives to service layer. Service layer always calls repository &
+returns entity.
+
 ----------------------------------------------------------------------------------
