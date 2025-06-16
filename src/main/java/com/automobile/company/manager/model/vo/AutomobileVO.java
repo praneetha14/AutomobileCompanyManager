@@ -18,4 +18,5 @@ public class AutomobileVO {
     private Integer mileage;
     private Brand brand;
     private Model model;
+    private CustomerVO customerVO;
 }

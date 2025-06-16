@@ -1,12 +1,15 @@
 package com.automobile.company.manager.service.facade;
 
 import com.automobile.company.manager.entity.AutomobileEntity;
+import com.automobile.company.manager.entity.CustomerEntity;
 import com.automobile.company.manager.model.dto.AutomobileDTO;
 import com.automobile.company.manager.model.dto.UpdateAutomobileDTO;
 import com.automobile.company.manager.model.enums.Brand;
 import com.automobile.company.manager.model.enums.Model;
 import com.automobile.company.manager.model.vo.AutomobileVO;
+import com.automobile.company.manager.model.vo.CustomerVO;
 import com.automobile.company.manager.service.AutomobileService;
+import com.automobile.company.manager.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
@@ -18,8 +21,14 @@ public class AutomobileFacade {
 
     private final AutomobileService automobileService;
 
+    private final CustomerService customerService;
+
     public UUID createAutomobile(AutomobileDTO automobileDTO) {
         checkModel(automobileDTO.getModel(), automobileDTO.getBrand());
+        CustomerEntity customer = customerService.getCustomerById(automobileDTO.getCustomerId());
+        if (customer == null) {
+            throw new RuntimeException("Customer not found");
+        }
         AutomobileEntity automobileEntity = new AutomobileEntity();
         automobileEntity.setBrand(automobileDTO.getBrand());
         automobileEntity.setModel(automobileDTO.getModel());
@@ -27,6 +36,7 @@ public class AutomobileFacade {
         automobileEntity.setNumberOfSeats(automobileDTO.getNumberOfSeats());
         automobileEntity.setModelYear(automobileDTO.getModelYear());
         automobileEntity.setRegistrationNumber(automobileDTO.getRegistrationNumber());
+        automobileEntity.setCustomerEntity(customer);
         automobileEntity = automobileService.createAutomobile(automobileEntity);
         return automobileEntity.getId();
     }
@@ -73,10 +83,29 @@ public class AutomobileFacade {
         automobileService.deleteAutomobile(automobileEntity);
     }
 
+    public AutomobileVO updateAutomobileCustomer(UUID id, UUID customerId){
+        AutomobileEntity automobileEntity = automobileService.getAutomobileById(id);
+        CustomerEntity customerEntity = customerService.getCustomerById(customerId);
+        if (automobileEntity == null) {
+            throw new RuntimeException("Automobile does not exist with id: " + id);
+        }
+        if(customerEntity == null){
+            throw new RuntimeException("Customer does not exist with id: " + id);
+        }
+        automobileEntity.setCustomerEntity(customerEntity);
+        automobileService.updateAutomobile(automobileEntity);
+        return toVO(automobileEntity);
+    }
+
     private AutomobileVO toVO(AutomobileEntity automobileEntity) {
         return new AutomobileVO(automobileEntity.getId(), automobileEntity.getRegistrationNumber(),
                 automobileEntity.getModelYear(), automobileEntity.getNumberOfSeats(), automobileEntity.getMileage(),
-                automobileEntity.getBrand(), automobileEntity.getModel());
+                automobileEntity.getBrand(), automobileEntity.getModel(),toCustomerVO(automobileEntity.getCustomerEntity()));
+    }
+
+    private CustomerVO toCustomerVO(CustomerEntity customerEntity) {
+        return new CustomerVO(customerEntity.getId(),customerEntity.getCustomerName(), customerEntity.getCustomerPhone(),
+                customerEntity.getCustomerEmail(), customerEntity.getCustomerAddress());
     }
 
 }

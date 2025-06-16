@@ -1,6 +1,7 @@
 package com.automobile.company.manager.service;
 
 import com.automobile.company.manager.entity.AutomobileEntity;
+import com.automobile.company.manager.model.dto.AutomobileDTO;
 
 import java.util.List;
 import java.util.UUID;
