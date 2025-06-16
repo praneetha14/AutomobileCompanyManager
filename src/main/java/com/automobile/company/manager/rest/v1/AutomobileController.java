@@ -44,4 +44,9 @@ public class AutomobileController {
     public void deleteAutomobile(@PathVariable UUID id) {
         automobileFacade.deleteAutomobile(id);
     }
+
+    @PutMapping("/update-customer/{id}")
+    public ResponseEntity<AutomobileVO> updateAutomobileCustomer(@PathVariable UUID id, @RequestParam UUID customerId) {
+        return ResponseEntity.ok(automobileFacade.updateAutomobileCustomer(id, customerId));
+    }
 }

@@ -37,4 +37,8 @@ public class AutomobileEntity {
     @Enumerated(EnumType.STRING)
     private Model model;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    private CustomerEntity customerEntity;
+
 }
