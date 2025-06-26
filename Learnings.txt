@@ -9,18 +9,18 @@ to springboot application)
 
 2.Next in build.gradle add dependecies, spring-boot-starter for starting the spring application
 to let to know that it is spring application, spring-boot-starter-web->It is for web layer, adding essential dependencies
-that provides the functionalities for creating REST api's. It is for tomcat server.
+that provides the functionalities for creating REST Api's. It is for tomcat server.
 spring-boot-data-starter-jpa -> for datalayer-> for database which performs tasks like sending & modifying data
 & for entity annotations & repository. my-sql-connector-j -> for connecting to mysqlserver.
 
-3.In src->main->java->com.automobile.company.manager package-> create new packages rest.v1(for controller in which facade method
-will be called. in controller we define api endpoints. In controller we autowire facade layer),
+3.In src->main->java->com.automobile.company.manager package-> create new packages rest.v1(for controller in which facade
+method will be called. in controller we define api endpoints. In controller we autowire facade layer),
 model(for receiving input as we receive input as json object then we convert into required output
 like DTO or VO. In model we create dto,enums,vo packages for fields), entity(for database
 creation), service(inside this there are facade & service packages in which business logic is defined
 in facade layer & service package for communicating with repository), repository(to perform all dml(data manipulation language
 operations).
-In controller we autowire facade class, in facade layer we autowire serviceimpl class, in serviceimpl
+In controller we autowire facade class, in facade layer we autowire serviceImpl class, in serviceImpl
 class we implements service interface. In controller we give json as input & returns json & its corresponding
 http code for its api method. And for constructor based injection we define another class on com.automobile....
 package for defining beans for facade class & service class. For autowiring we add @RequiredArgsConstructor
@@ -28,5 +28,21 @@ annotation for automatically generating constructor that includes parameters for
 for reducing boiler plate code. Facade layer calls the service layer, it takes model as input & it sends to
 service layer & facade layer returns entity which it gives to service layer. Service layer always calls repository &
 returns entity.
-
 ----------------------------------------------------------------------------------
+1. First Automobile CRUD is created, create controller class, facade class & service class for Automobile
+In repository package, create AutomobileRepository interface, in this extend the JpaRepository class & give parameters
+as CustomerEntity & (give the primary key parameter) UUID (since it is primary key in the entity).Here We extends
+JpaRepository for database entity creation & to perform DML operations on database. Next create service package in which
+facade & serviceImpl package will be there. Created rest.v1 package for the controller layer. Created entity package for
+Entities required for Automobile, Customer, User etc. Created model package for dto(data transfer object) package, enums
+& vo(value object or response object). In dto sub package there will be automobile DTO(automobileDTO extends
+UpdateAutomobileDTO), Customer DTO, UpdateAutomobileDTO(It is used whenever necessary) & UserLoginDTO(for user credentials.
+In enums subpackage there will be Brand & Model enums in which number of brands, models are pre-defined. In vo subpackage
+there will be automobileVO & CustomerVO these are the response objects, these are returned whenever necessary like find
+all in which we have to return all the customers or automobiles with their ID's.
+
+2.The springboot application starts in AutomobileCompanyManagerApplication.java class where the main method is defined,
+in that the annotation @SpringBootApplication automatically added & add @EntityScan & in that we define basePackages-give
+the application name.entity for creating entity tables (where we defined @Entity in the entity package), if we don't
+define @EntityScan in this class then it won't create entity tables.And in main method SpringBoot.run() will be there
+where your springboot application starts.In AutomobileController we autowire facade layer.
