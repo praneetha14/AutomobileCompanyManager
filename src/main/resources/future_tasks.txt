@@ -1,0 +1,16 @@
+Design Schema for Employee and Services
+Create Employee crud
+Create Services crud
+Optimize code in facades using mapstruct
+Introduce security to the application using spring security not API
+should work without full authentication.
+
+
+
+//two types of test cases
+       unit test case                                       integration test case
+AutomobileController                                      AutomobileFacade
+ -> accepts payload and passes                          accepts payload from controller
+ it to AutomobileFacade                                 performs business logic
+                                                        it calls service to create resource
+                                                        service calls repository and save the resource

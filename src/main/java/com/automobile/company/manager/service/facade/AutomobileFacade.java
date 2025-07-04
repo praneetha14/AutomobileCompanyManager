@@ -90,7 +90,7 @@ public class AutomobileFacade {
             throw new RuntimeException("Automobile does not exist with id: " + id);
         }
         if(customerEntity == null){
-            throw new RuntimeException("Customer does not exist with id: " + id);
+            throw new RuntimeException("Customer does not exist with id: " + customerId);
         }
         automobileEntity.setCustomerEntity(customerEntity);
         automobileService.updateAutomobile(automobileEntity);
