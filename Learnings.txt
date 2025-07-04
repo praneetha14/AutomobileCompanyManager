@@ -45,4 +45,5 @@ all in which we have to return all the customers or automobiles with their ID's.
 in that the annotation @SpringBootApplication automatically added & add @EntityScan & in that we define basePackages-give
 the application name.entity for creating entity tables (where we defined @Entity in the entity package), if we don't
 define @EntityScan in this class then it won't create entity tables.And in main method SpringBoot.run() will be there
-where your springboot application starts.In AutomobileController we autowire facade layer.
+where your springboot application starts.In AutomobileController we autowire facade layer. In facade layer, serviceImpl
+layer is autowired.
