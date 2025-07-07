@@ -45,7 +45,7 @@ public class CustomerFacade {
 
     public void deleteCustomerById(UUID id) {
         if(customerService.getCustomerById(id) == null) {
-            throw new RuntimeException("Customer not found");
+            throw new RuntimeException("Customer does not exist");
         }
         customerService.deleteCustomerById(id);
     }

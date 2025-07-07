@@ -5,6 +5,7 @@ import com.automobile.company.manager.model.dto.CustomerDTO;
 import com.automobile.company.manager.model.enums.Brand;
 import com.automobile.company.manager.model.enums.Model;
 import com.automobile.company.manager.model.vo.AutomobileVO;
+import com.automobile.company.manager.model.vo.CustomerVO;
 import com.automobile.company.manager.service.facade.AutomobileFacade;
 import com.automobile.company.manager.service.facade.CustomerFacade;
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,8 @@ public class AutomobileFacadeTest extends AbstractTest {
 
     @Autowired
     private CustomerFacade customerFacade;
+
+    private static final String DELETE_AUTOMOBILE_ERROR_MESSAGE = "Automobile does not exist with id: ";
 
     @Test
     void createAutomobileFacadeSuccessTest() {
@@ -122,15 +125,10 @@ public class AutomobileFacadeTest extends AbstractTest {
         automobileDTO.setCustomerId(customerId);
         UUID id = automobileFacade.createAutomobile(automobileDTO);
         automobileFacade.deleteAutomobile(id);
-        Throwable exception = assertThrows(RuntimeException.class, () -> automobileFacade.getAutomobileById(id));
+        Throwable exception = assertThrows(RuntimeException.class, () -> automobileFacade.deleteAutomobile(id));
         assertNotNull(id);
-    }
-
-    @Test
-    void deleteAutomobileByIdFailureTest() {
-        UUID id = UUID.randomUUID();
-        Throwable exception = assertThrows(RuntimeException.class, () -> automobileFacade.getAutomobileById(id));
         assertNotNull(exception);
+        assertEquals(DELETE_AUTOMOBILE_ERROR_MESSAGE + id, exception.getMessage());
     }
 
     @Test
@@ -166,6 +164,14 @@ public class AutomobileFacadeTest extends AbstractTest {
         Throwable exception = assertThrows(RuntimeException.class, () -> automobileFacade.updateAutomobileCustomer(id, customerId));
         assertNotNull(exception);
         assertEquals("Customer does not exist with id: " + customerId, exception.getMessage());
+    }
+
+    @Test
+    void deleteAutomobileByIdFailureTest() {
+        UUID id = UUID.randomUUID();
+        Throwable exception = assertThrows(RuntimeException.class, () -> automobileFacade.deleteAutomobile(id));
+        assertNotNull(exception);
+        assertEquals(DELETE_AUTOMOBILE_ERROR_MESSAGE + id, exception.getMessage());
     }
 
     private CustomerDTO createCustomerDTO() {
