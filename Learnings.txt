@@ -18,9 +18,9 @@ method will be called. in controller we define api endpoints. In controller we a
 model(for receiving input as we receive input as json object then we convert into required output
 like DTO or VO. In model we create dto,enums,vo packages for fields), entity(for database
 creation), service(inside this there are facade & service packages in which business logic is defined
-in facade layer & service package for communicating with repository), repository(to perform all dml(data manipulation language
-operations).
-In controller we autowire facade class, in facade layer we autowire serviceImpl class, in serviceImpl
+in facade layer & service package for communicating with repository), repository(to perform all dml(data manipulation
+language operations).
+In controller, we autowire facade class, in facade layer we autowire serviceImpl class, in serviceImpl
 class we implements service interface. In controller we give json as input & returns json & its corresponding
 http code for its api method. And for constructor based injection we define another class on com.automobile....
 package for defining beans for facade class & service class. For autowiring we add @RequiredArgsConstructor

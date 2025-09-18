@@ -1,5 +1,8 @@
 package com.automobile.company.manager;
 
+import com.automobile.company.manager.model.dto.AutomobileDTO;
+import com.automobile.company.manager.model.enums.Brand;
+import com.automobile.company.manager.model.enums.Model;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -55,6 +58,17 @@ public abstract class AbstractTest {
                 transaction.rollback();
             }
         }
+    }
+
+    protected AutomobileDTO createAutomobileDTO() {
+        AutomobileDTO automobileDTO = new AutomobileDTO();
+        automobileDTO.setBrand(Brand.AUDI);
+        automobileDTO.setModel(Model.A5);
+        automobileDTO.setModelYear(2020);
+        automobileDTO.setRegistrationNumber("AP12ER1234");
+        automobileDTO.setMileage(22);
+        automobileDTO.setNumberOfSeats(5);
+        return automobileDTO;
     }
 
     @org.springframework.boot.test.context.TestConfiguration
