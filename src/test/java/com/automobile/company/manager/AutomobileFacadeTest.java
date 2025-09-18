@@ -3,9 +3,7 @@ package com.automobile.company.manager;
 import com.automobile.company.manager.model.dto.AutomobileDTO;
 import com.automobile.company.manager.model.dto.CustomerDTO;
 import com.automobile.company.manager.model.enums.Brand;
-import com.automobile.company.manager.model.enums.Model;
 import com.automobile.company.manager.model.vo.AutomobileVO;
-import com.automobile.company.manager.model.vo.CustomerVO;
 import com.automobile.company.manager.service.facade.AutomobileFacade;
 import com.automobile.company.manager.service.facade.CustomerFacade;
 import org.junit.jupiter.api.Test;
@@ -18,13 +16,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 //this test class contains test cases for code in Automobile Facade
 public class AutomobileFacadeTest extends AbstractTest {
+    private static final String DELETE_AUTOMOBILE_ERROR_MESSAGE = "Automobile does not exist with id: ";
     @Autowired
     private AutomobileFacade automobileFacade;
-
     @Autowired
     private CustomerFacade customerFacade;
-
-    private static final String DELETE_AUTOMOBILE_ERROR_MESSAGE = "Automobile does not exist with id: ";
 
     @Test
     void createAutomobileFacadeSuccessTest() {
@@ -180,16 +176,5 @@ public class AutomobileFacadeTest extends AbstractTest {
         customerDTO.setCustomerName("Praneetha");
         customerDTO.setCustomerEmail("praneetha@gmail.com");
         return customerDTO;
-    }
-
-    private AutomobileDTO createAutomobileDTO() {
-        AutomobileDTO automobileDTO = new AutomobileDTO();
-        automobileDTO.setBrand(Brand.AUDI);
-        automobileDTO.setModel(Model.A5);
-        automobileDTO.setModelYear(2020);
-        automobileDTO.setRegistrationNumber("AP12ER1234");
-        automobileDTO.setMileage(22);
-        automobileDTO.setNumberOfSeats(5);
-        return automobileDTO;
     }
 }

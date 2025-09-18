@@ -1,0 +1,19 @@
+package com.automobile.company.manager.model.enums;
+
+public enum EmployeeDesignation {
+    IT_MANAGER,
+    IT_TEAM_LEAD,
+    SOFTWARE_ENGINEER,
+    SALES_MANAGER,
+    SALES_EXECUTIVE,
+    SERVICE_MANAGER,
+    TECHNICAL_ENGINEER,
+    HR_MANAGER,
+    HR_LEAD,
+    ACCOUNT_MANAGER,
+    ACCOUNT_ASSISTANT,
+    ADMIN_MANAGER,
+    OFFICE_ASSISTANT,
+    RECEPTIONIST,
+    FACILITY_MANAGER;
+}

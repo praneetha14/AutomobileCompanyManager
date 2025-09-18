@@ -20,7 +20,7 @@ public class AutomobileEntity {
     @Column(name = "registration_number")
     private String RegistrationNumber;
 
-    @Column(name = "model_year")
+    @Column(name = "model_year", nullable = false)
     private Integer modelYear;
 
     @Column(name = "number_of_seats")
