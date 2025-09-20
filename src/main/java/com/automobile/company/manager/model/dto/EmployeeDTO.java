@@ -1,5 +1,10 @@
 package com.automobile.company.manager.model.dto;
 
+import com.automobile.company.manager.model.enums.EmployeeDepartment;
+import com.automobile.company.manager.model.enums.EmployeeDesignation;
+import com.automobile.company.manager.model.enums.EmployeeGender;
+import com.automobile.company.manager.model.enums.EmployeeStatus;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,11 +18,11 @@ public class EmployeeDTO {
     private String email;
     private String phoneNumber;
     private Integer age;
-    private String gender;
+    private EmployeeGender gender;
     private String address;
-    private String designation;
-    private String department;
+    private EmployeeDesignation designation;
+    private EmployeeDepartment department;
     private double salary;
-    private LocalDate dateOfJoining;
-    private String status;
+    private String dateOfJoining;
+    private EmployeeStatus status;
 }

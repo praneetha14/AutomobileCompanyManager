@@ -43,7 +43,7 @@ public class AutomobileServiceAutoConfiguration {
     }
 
     @Bean
-    public EmployeeFacade employeeFacade(EmployeeService employeeService) {
-        return new EmployeeFacade(employeeService);
+    public EmployeeFacade employeeFacade(EmployeeService employeeService, EmployeeRepository employeeRepository) {
+        return new EmployeeFacade(employeeService, employeeRepository);
     }
 }
