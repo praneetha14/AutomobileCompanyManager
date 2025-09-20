@@ -1,5 +1,9 @@
 package com.automobile.company.manager.entity;
 
+import com.automobile.company.manager.model.enums.EmployeeDepartment;
+import com.automobile.company.manager.model.enums.EmployeeDesignation;
+import com.automobile.company.manager.model.enums.EmployeeGender;
+import com.automobile.company.manager.model.enums.EmployeeStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -39,26 +43,26 @@ public class EmployeeEntity {
 
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
-    private String gender;
+    private EmployeeGender gender;
 
     @Column(name = "address")
     private String address;
 
     @Column(name = "designation")
     @Enumerated(EnumType.STRING)
-    private String designation;
+    private EmployeeDesignation designation;
 
     @Column(name = "department")
     @Enumerated(EnumType.STRING)
-    private String department;
+    private EmployeeDepartment department;
 
     @Column(name = "salary")
     private double salary;
 
     @Column(name = "date_of_joining")
-    private LocalDate dateOfJoining;
+    private String dateOfJoining;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private String status;
+    private EmployeeStatus status;
 }
